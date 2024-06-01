@@ -1,0 +1,346 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-04-01T11:00:10+02:00\n"
+"PO-Revision-Date: 2019-04-01T11:00:10+02:00\n"
+"Language: \n"
+
+# GMT 1588015593.101
+msgctxt "inventorystock"
+msgid "Inventory Stock"
+msgstr "Inventory Stock"
+
+# GMT 1588015593.102
+#, mobile
+msgctxt "inventorystock"
+msgid "Inventory Stock"
+msgstr "Inventory Stock"
+
+# GMT 1588015593.1001
+msgctxt "inventorystock"
+msgid "Information successfully saved"
+msgstr "Information successfully saved"
+
+# GMT 1588015593.1002
+msgctxt "inventorystock"
+msgid "Something went wrong with the update, will retry later."
+msgstr "Something went wrong with the update, will retry later."
+
+# GMT 1588015593.1003
+msgctxt "inventorystock"
+msgid "Store you are trying to edit does not exists."
+msgstr "Store you are trying to edit does not exists."
+
+# GMT 1588015593.1004
+msgctxt "inventorystock"
+msgid "Success."
+msgstr "Success."
+
+# GMT 1588015593.1005
+msgctxt "inventorystock"
+msgid "Deleted successfully"
+msgstr "Deleted successfully"
+
+# GMT 1588015593.1006
+msgctxt "inventorystock"
+msgid "Store Name"
+msgstr "Store Name"
+
+# GMT 1588015593.1007
+msgctxt "inventorystock"
+msgid "Address"
+msgstr "Address"
+
+# GMT 1588015593.1008
+msgctxt "inventorystock"
+msgid "City"
+msgstr "City"
+
+# GMT 1588015593.1009
+msgctxt "inventorystock"
+msgid "Description"
+msgstr "Description"
+
+# GMT 1588015593.1010
+msgctxt "inventorystock"
+msgid "Active"
+msgstr "Active"
+
+# GMT 1588015593.1011
+msgctxt "inventorystock"
+msgid "Category Name"
+msgstr "Category Name"
+
+# GMT 1588015593.1012
+msgctxt "inventorystock"
+msgid "You are about to remove this Store ! Are you sure ?"
+msgstr "You are about to remove this Store ! Are you sure ?"
+
+# GMT 1588015593.1013
+msgctxt "inventorystock"
+msgid "You are about to remove this Category! Are you sure ?"
+msgstr "You are about to remove this Category! Are you sure ?"
+
+# GMT 1588015593.1014
+msgctxt "inventorystock"
+msgid "Store"
+msgstr "Store"
+
+# GMT 1588015593.1015
+msgctxt "inventorystock"
+msgid "Category"
+msgstr "Category"
+
+# GMT 1588015593.1016
+msgctxt "inventorystock"
+msgid "Products"
+msgstr "Products"
+
+# GMT 1588015593.1017
+msgctxt "inventorystock"
+msgid "Design"
+msgstr "Design"
+
+# GMT 1588015593.1018
+msgctxt "inventorystock"
+msgid "Manage Product"
+msgstr "Manage Product"
+
+# GMT 1588015593.1019
+msgctxt "inventorystock"
+msgid "Create a New Store"
+msgstr "Create a New Store"
+
+# GMT 1588015593.1020
+msgctxt "inventorystock"
+msgid "Manage Store"
+msgstr "Manage Store"
+
+# GMT 1588015593.1021
+msgctxt "inventorystock"
+msgid "S.NO"
+msgstr "S.NO"
+
+# GMT 1588015593.1022
+msgctxt "inventorystock"
+msgid "Name"
+msgstr "Name"
+
+# GMT 1588015593.1023
+msgctxt "inventorystock"
+msgid "Status"
+msgstr "Status"
+
+# GMT 1588015593.1024
+msgctxt "inventorystock"
+msgid "Close"
+msgstr "Close"
+
+# GMT 1588015593.1025
+msgctxt "inventorystock"
+msgid "Manage Category"
+msgstr "Manage Category"
+
+# GMT 1588015593.1026
+msgctxt "inventorystock"
+msgid "Create a New Category"
+msgstr "Create a New Category"
+
+# GMT 1588015593.1027
+msgctxt "inventorystock"
+msgid "Stocks"
+msgstr "Stocks"
+
+# GMT 1588015593.1028
+msgctxt "inventorystock"
+msgid "Export"
+msgstr "Export"
+
+# GMT 1588015593.1029
+msgctxt "inventorystock"
+msgid "Select Category"
+msgstr "Select Category"
+
+# GMT 1588015593.1030
+msgctxt "inventorystock"
+msgid "From"
+msgstr "From"
+
+# GMT 1588015593.1031
+msgctxt "inventorystock"
+msgid "To"
+msgstr "To"
+
+# GMT 1588015593.1032
+msgctxt "inventorystock"
+msgid "EAN Numbers"
+msgstr "EAN Numbers"
+
+# GMT 1588015593.1033
+msgctxt "inventorystock"
+msgid "Date"
+msgstr "Date"
+
+# GMT 1588015593.1034
+msgctxt "inventorystock"
+msgid "added By"
+msgstr "added By"
+
+# GMT 1588015593.1035
+msgctxt "inventorystock"
+msgid "Qty"
+msgstr "Qty"
+
+# GMT 1588015593.1037
+msgctxt "inventorystock"
+msgid "ID"
+msgstr "ID"
+
+# GMT 1588015593.103
+#, mobile
+msgctxt "inventorystock"
+msgid "Error"
+msgstr "Error"
+
+# GMT 1588015593.104
+#, mobile
+msgctxt "inventorystock"
+msgid "is not available, Please change the default store."
+msgstr "is not available, Please change the default store."
+
+# GMT 1588015593.105
+#, mobile
+msgctxt "inventorystock"
+msgid "Invalid code."
+msgstr "Invalid code."
+
+# GMT 1588015593.106
+#, mobile
+msgctxt "inventorystock"
+msgid "An error occurred while reading the code."
+msgstr "An error occurred while reading the code."
+
+# GMT 1588015593.107
+#, mobile
+msgctxt "inventorystock"
+msgid "This will open the code scan camera on your device"
+msgstr "This will open the code scan camera on your device"
+
+# GMT 1588015593.108
+#, mobile
+msgctxt "inventorystock"
+msgid "Unreadable QRCode, sorry"
+msgstr "Unreadable QRCode, sorry"
+
+# GMT 1588015593.109
+#, mobile
+msgctxt "inventorystock"
+msgid "Click here for Login!"
+msgstr "Click here for Login!"
+
+# GMT 1588015593.110
+#, mobile
+msgctxt "inventorystock"
+msgid "Store is not available, Please contact to administrator!"
+msgstr "Store is not available, Please contact to administrator!"
+
+# GMT 1588015593.111
+#, mobile
+msgctxt "inventorystock"
+msgid "Change"
+msgstr "Change"
+
+# GMT 1588015593.112
+#, mobile
+msgctxt "inventorystock"
+msgid "Recent Activity"
+msgstr "Recent Activity"
+
+# GMT 1588015593.113
+#, mobile
+msgctxt "inventorystock"
+msgid "EAN Number"
+msgstr "EAN Number"
+
+# GMT 1588015593.114
+#, mobile
+msgctxt "inventorystock"
+msgid "Qty"
+msgstr "Qty"
+
+# GMT 1588015593.115
+#, mobile
+msgctxt "inventorystock"
+msgid "Select a Store"
+msgstr "Select a Store"
+
+# GMT 1588015593.116
+#, mobile
+msgctxt "inventorystock"
+msgid "SCAN EAN PRODUCT"
+msgstr "SCAN EAN PRODUCT"
+
+# GMT 1588015593.117
+#, mobile
+msgctxt "inventorystock"
+msgid "Select Store"
+msgstr "Select Store"
+
+# GMT 1588015593.118
+#, mobile
+msgctxt "inventorystock"
+msgid "Select Category"
+msgstr "Select Category"
+
+# GMT 1588015593.119
+#, mobile
+msgctxt "inventorystock"
+msgid "Edit Product"
+msgstr "Edit Product"
+
+# GMT 1588015593.120
+#, mobile
+msgctxt "inventorystock"
+msgid "Add Product"
+msgstr "Add Product"
+
+# GMT 1588015593.121
+msgctxt "inventorystock"
+msgid "EAN Number"
+msgstr "EAN Number"
+
+# GMT 1588015593.122
+#, mobile
+msgctxt "inventorystock"
+msgid "Category"
+msgstr "Category"
+
+# GMT 1588015593.123
+#, mobile
+msgctxt "inventorystock"
+msgid "Enter a EAN Number"
+msgstr "Enter a EAN Number"
+
+# GMT 1588015593.124
+#, mobile
+msgctxt "inventorystock"
+msgid "Enter a Category"
+msgstr "Enter a Category"
+
+# GMT 1588015593.125
+#, mobile
+msgctxt "inventorystock"
+msgid "Enter a Qty"
+msgstr "Enter a Qty"
+
+# GMT 1588015593.126
+#, mobile
+msgctxt "inventorystock"
+msgid "Save"
+msgstr "Save"

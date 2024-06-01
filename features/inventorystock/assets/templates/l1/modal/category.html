@@ -1,0 +1,31 @@
+<ion-modal-view sb-page-background cache-view="false"
+          class="inventorystock inventorystock-category">
+    <ion-header-bar class="bar-custom">
+        <div class="buttons">
+            <button class="button button-clear"
+                    ng-click="closeCategoryModal()">
+                <i class="icon ion-sb-close-modal"></i>
+            </button>
+        </div>
+        <h1 class="title">{{ ::"Select Category" | translate:"inventorystock" }}</h1>
+    </ion-header-bar>
+    <ion-content class="has-header">
+
+   	   <!-- Serach Item -->
+      <div class="list" ng-show="!is_loading">
+           
+            <label class="item item-input item-button-right item-custom">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" ng-model="searchText"
+                       placeholder="{{ forTranslate('Search Category') }}" />
+            </label>
+     
+      
+            <div class="item item-custom" ng-click="selectCategory(category)" ng-repeat="category in categories | filter:searchText">
+              <h2>{{ category.category_name}}</h2>
+            </div>
+
+       </div>
+ 
+   </ion-content> 
+</ion-modal-view>

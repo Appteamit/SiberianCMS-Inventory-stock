@@ -1,0 +1,230 @@
+ <?php 
+ $value_id = (new Inventorystock_Model_Inventorystock())->getCurrentValueId();
+ $categories = (new Inventorystock_Model_Category())->findAll(['value_id' => $value_id, 'status = ?' => 'active'])->toArray();
+ ?> 
+
+ <div class="row">
+    <div class="col-md-12">
+        <div class="page-content-wrapper form-horizontal">
+            <div class="content solo-page">
+                <h3 class="title-editor border-blue text-center">
+                    <?php echo  p__("inventorystock", "Stocks"); ?>  
+
+                <a href="#"
+                   id="export_products"
+                   class="color-blue btn sb-tour pull-right" style="margin-right:16px;">
+                    <?php echo  p__("inventorystock", "Export"); ?>
+                </a>           
+                </h3>
+               
+                  <div class="subcontent content-color container-fluid">
+                    <div class="form-group">
+                     <div class="col-md-12">
+                        <div id="row_filter_metrics" class="pull-right">
+                               <div class="col-md-3 col-sm-12 col-xs-12">
+                               <select class="input-flat sb-tour dt-search color-blue" name="category" id="category" data-dynatable-query="category">
+                                    <option value=""><?php echo  p__("inventorystock", "Select Category"); ?></option>
+                                    <?php foreach ($categories as $key => $value) : ?>
+                                       <option value="<?php echo $value['id'] ?>"><?php echo $value['category_name']; ?></option>
+                                     <?php endforeach ?>
+                                </select>
+                               </div>
+                               <div class="col-md-1 col-sm-6 col-xs-6">
+                                    <label for="from"><?php echo  p__("inventorystock", "From"); ?></label>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-xs-6">
+                                    <input type="text" id="from" name="from" class="input-flat sb-tour dt-search" autocomplete="off" data-dynatable-query="from">
+                                </div>
+                                <div class="col-md-1 col-sm-6 col-xs-6">
+                                    <label for="to"><?php echo  p__("inventorystock", "To"); ?></label>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-xs-6">
+                                    <input type="text" id="to" name="to" class="input-flat sb-tour dt-search" autocomplete="off" data-dynatable-query="to">
+                                </div>
+                        </div>
+
+                            <table id="dynamic-customers"
+                                   class="table content-white-bkg sb-pager">
+                                <thead>
+                                    <tr class="border-grey">
+                                        <th data-dynatable-column="id"
+                                            style="width: 5%;"><?php echo  p__("inventorystock", "ID"); ?></th>
+                                        <th data-dynatable-column="ean_number"
+                                            style="width: 20%;"><?php echo  p__("inventorystock", "EAN Numbers"); ?></th>
+                                        <th data-dynatable-column="qty"
+                                            style="width: 10%;"><?php echo  p__("inventorystock", "Qty"); ?></th>
+                                        <th data-dynatable-column="store_name"
+                                            style="width: 20%;"><?php echo  p__("inventorystock", "Store"); ?></th>
+                                        <th data-dynatable-column="category_name"
+                                            style="width: 15%;"><?php echo  p__("inventorystock", "Category"); ?></th>
+                                         <th data-dynatable-column="firstname"
+                                            style="width: 15%;"><?php echo  p__("inventorystock", "added By"); ?></th>
+                                       <th data-dynatable-column="created_at"
+                                            style="width: 20%;"><?php echo  p__("inventorystock", "Date"); ?></th>
+                                     
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="/app/sae/design/desktop/flat/js/dynatable/jquery.dynatable.css"
+      media="screen"
+      rel="stylesheet"
+      type="text/css">
+<script type="text/javascript"
+        src="/app/sae/design/desktop/flat/js/dynatable/jquery.dynatable.js"></script>
+
+<style type="text/css">
+    #dynamic-customers {
+        margin-top: 15px;
+    }
+</style>
+
+<script type="text/javascript">
+    var uriParams = {};
+    let rowTemplate = `
+    <tr class="dynarow">
+        <td>(ID)</td>
+        <td>
+           <a class="text-blue"><b>(EAN)</b></a>
+        </td>
+        <td>(QTY)</td>
+        <td>(STORE)</td>
+        <td>(CATEGORY)</td>
+        <td>(USER)</td>
+        <td>(DATE)</td>
+    </tr>`;
+
+    function rowWriter(rowIndex, record, columns, cellWriter) {
+        return rowTemplate
+            .replace(/\(ID\)/g, record.id)
+            .replace(/\(EAN\)/g, record.ean_number)
+            .replace(/\(QTY\)/g, record.qty)
+            .replace(/\(STORE\)/g, record.store_name)
+            .replace(/\(CATEGORY\)/g, record.category_name)
+            .replace(/\(USER\)/g, record.firstname)
+            .replace(/\(DATE\)/g, record.created_at);
+    }
+    $.dynatableSetup({
+        table: {
+            defaultColumnIdStyle: 'noStyle'
+        },
+        features: {
+            paginate: true,
+            sort: true,
+            pushState: true,
+            search: true,
+            recordCount: true,
+            perPageSelect: false,
+        },
+    });
+
+    let tableCustomers = $('#dynamic-customers');
+
+    tableCustomers.bind('dynatable:preinit', function(e, dynatable) {
+        dynatable.utility.textTransform.noStyle = function(text) {
+            return text;
+        };
+    });
+  
+    tableCustomers.bind('dynatable:init', function(e, dynatable) {
+            dynatable.queries.functions['to'] = function(r, val) {
+              return queryValue;
+            };  
+            dynatable.queries.functions['from'] = function(r, val) {
+              return queryValue;
+            }; 
+                    
+      });
+
+    tableCustomers.bind('dynatable:afterProcess', function (e, data) {
+        uriParams = data.queries;
+    });
+    
+
+    tableCustomers.bind('dynatable:push', function(e, dynatable) {
+          uriParams = dynatable.queries;   
+    });
+
+    // And on the table
+    tableCustomers.dynatable({
+        dataset: {
+            ajax: true,
+            ajaxUrl: '/inventorystock/application/fetch-products',
+            ajaxOnLoad: true,
+            records: [],
+            perPageDefault: 100
+        },
+        inputs: {
+            processingText: '<?php echo __jss("Loading ...") ?>',
+            searchPlaceholder: '<?php echo __jss("Search EAN, Store, Category ...") ?>',
+            recordCountText: '<?php echo __jss("Showing") ?> ',
+            filteredFrom: ' (<?php echo __jss("filtered from #TOTAL# total records") ?>)',
+            recordText: '<?php echo __jss("record") ?>',
+            recordTextPlural: '<?php echo __jss("records") ?>',
+            textOf: '<?php echo __jss("of") ?>',
+            textTo: '<?php echo __jss("to") ?>',
+            queries: $('.dt-search')
+        },
+        writers: {
+            _rowWriter: rowWriter
+        }
+    });
+
+    $(document).ready(function() {
+        if($.datepicker.regional['<?php echo Core_Model_Language::getCurrentLanguageDatepicker(); ?>']) {
+            $.datepicker.setDefaults($.datepicker.regional['<?php echo Core_Model_Language::getCurrentLanguageDatepicker(); ?>']);
+        } else {
+            $.datepicker.setDefaults($.datepicker.regional['en']);
+        }
+        $( "#from" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                numberOfMonths: 1,
+                onClose: function( selectedDate ) {
+                    $( "#to" ).datepicker( "option", "minDate", selectedDate );
+                }
+            });
+
+            $( "#to" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                numberOfMonths: 1,
+                onClose: function( selectedDate ) {
+                    $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+                }
+            });
+       
+
+        let exportCsv = $('#export_products');
+        exportCsv.off('click');
+        exportCsv.on('click', function () {
+            if (typeof uriParams === 'undefined') {
+                let uri = "<?php echo $this->getUrl('inventorystock/application/export-csv'); ?>";
+                window.open(uri, '_blank');
+            }else{
+                let uri = "<?php echo $this->getUrl('inventorystock/application/export-csv'); ?>?"+jQuery.param( uriParams );
+                window.open(uri, '_blank');
+            }           
+        });
+
+     });
+ 
+ 
+</script>
+
+<style type="text/css">
+    .dynatable-record-count{
+        bottom: 0px !important;
+    }
+    .text-blue{
+        color: #0099c7;
+    }
+</style>

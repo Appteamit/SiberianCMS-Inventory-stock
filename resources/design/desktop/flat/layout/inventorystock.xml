@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <inventorystock_application_edit>
+        <views>
+            <content class="application_view_customization_features_edit_tabbareditor" template="application/customization/features/edit/tabbar_editor.phtml" />
+            <content_editor class="core_view_default" template="inventorystock/application/edit.phtml" />
+        </views>
+    </inventorystock_application_edit>
+
+    <inventorystock_application_products>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>Inventorystock Products</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="inventorystock/application/products.phtml" />
+        </views>
+        <actions>
+            <customization_sidebar_left name="setCurrentLink"><code>inventorystock</code></customization_sidebar_left>
+            <header_menu name="setCurrentLink"><code>inventorystock</code></header_menu>
+        </actions>
+    </inventorystock_application_products>
+
+</layout>

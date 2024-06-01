@@ -1,0 +1,236 @@
+<?php $option_value = $this->getOptionValue(); ?>
+<?php $value_id = $option_value->getId();
+
+/*Store Manage*/
+$storeFrom = new Inventorystock_Form_Store();
+$storeFrom->setElementValueById('value_id', $option_value->getId());
+$stores= (new Inventorystock_Model_Store())->findAll(['value_id' => $value_id, 'status != ?' => 'deleted']);
+$deleteStoreFrom = new Inventorystock_Form_Store_Delete();
+/*Store Manage End*/
+
+/*Category Manage*/
+$categoryFrom = new Inventorystock_Form_Category();
+$categoryFrom->setElementValueById('value_id', $option_value->getId());
+$categories = (new Inventorystock_Model_Category())->findAll(['value_id' => $value_id, 'status != ?' => 'deleted']);
+$deleteCategoryFrom = new Inventorystock_Form_Category_Delete();
+/*Category Manage End*/
+
+?>
+<br>
+<div id="loadContent">
+	    <!-- Nav tabs -->
+    <ul class="nav nav-tabs parent-tab inventory_list" role="tablist">
+       <li  class="active" role="presentation">
+            <a href="#store" aria-controls="options" role="tab" data-toggle="tab">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+                <i class="fa fa-spinner fa-spin dynamic-loader hide"></i>
+                <span class="hidden-xs option"><?php echo p__('inventorystock', "Store") ?></span>
+            </a>
+        </li>
+        <li  role="presentation">
+            <a href="#category" aria-controls="options" role="tab" data-toggle="tab">
+               <i class="fa fa-tags" aria-hidden="true"></i>
+                <i class="fa fa-spinner fa-spin dynamic-loader hide"></i>
+               <span class="hidden-xs option"><?php echo p__('inventorystock', "Category") ?></span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#product" aria-controls="options" role="tab" data-toggle="tab">
+               <i class="fa fa-list-alt" aria-hidden="true"></i>
+                <i class="fa fa-spinner fa-spin dynamic-loader hide"></i>
+               <span class="hidden-xs option"><?php echo p__('inventorystock', "Products") ?></span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#background" aria-controls="options" role="tab" data-toggle="tab">
+               <i class="fa fa-image" aria-hidden="true"></i>
+                <i class="fa fa-spinner fa-spin dynamic-loader hide"></i>
+               <span class="hidden-xs option"><?php echo p__('inventorystock', "Design") ?></span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+
+    		<!-- Store settings tab -->
+		<div role="tabpanel" class="tab-pane" id="product">
+		     <!-- Services block -->
+		    <div class="feature-block-add"><br>
+		        <h3 class="title-editor no-border-radius title-feature-indent">
+		            <?php echo p__('inventorystock', 'Manage Product'); ?>
+		            <a href="/inventorystock/application/products"  target="_blank" class="feature-toggle-add toggle_design color-blue pull-right bt-header-right btn">
+		                <i class="fa fa-chevron-right"></i>
+		            </a>
+		        </h3>
+		    </div>
+		</div>
+
+		<!-- Store settings tab -->
+		<div role="tabpanel" class="tab-pane active" id="store">
+		     <!-- Services block -->
+		    <div class="feature-block-add">
+		        <h3 class="title-editor no-border-radius title-feature-indent">
+		            <?php echo p__('inventorystock', 'Store'); ?>
+		            <button type="button" class="feature-toggle-add toggle_design color-blue pull-right bt-header-right btn">
+		                <i class="fa fa-plus"></i>
+		            </button>
+		        </h3>
+		    </div>
+
+		    <div class="feature-block-create">
+		        <h3 class="title-editor no-border-radius title-feature-indent">
+		            <?php echo p__('inventorystock', 'Create a New Store'); ?>
+		        </h3>
+		        <div class="container-fluid subcontent content-feature">
+		            <?php echo $storeFrom; ?>
+		        </div>
+		    </div>
+		    
+		   <?php if($stores->count() > 0): ?>
+		        <div class="feature-block-list">
+		            <div class="margin-top">
+		                <h3 class="title-editor no-border-radius title-feature-indent">
+		                    <?php echo p__('inventorystock', 'Manage Store'); ?>
+		                    <button type="button" class="toggle_design color-blue pull-right bt-header-right btn feature-toggle-items">
+		                        <i class="fa fa-chevron-down"></i>
+		                    </button>
+		                </h3>
+		                <div class="container-fluid first-row-feature content-feature feature-manage-items">
+		                    <table class="table content-white-bkg sb-pager">
+		                        <thead>
+		                        <tr class="border-blue">
+		                           <th class="sortable" style="width:10%;"><?php echo p__('inventorystock', 'S.NO'); ?></th>
+		                           <th class="sortable" style="width:50%;"><?php echo p__('inventorystock', 'Name'); ?></th>
+		                           <th  style="width:20%;"> <?php echo p__('inventorystock', 'Status'); ?></th>
+		                            <th></th>
+		                            <th></th>
+		                        </tr>
+		                        </thead>
+		                        <tbody>
+		                        <?php foreach($stores as $key => $store): ?>
+		                            <tr id="store_manage_element_<?php echo $store->getStoreId(); ?>" class="store-manage-element sb-pager">
+		                                <td><?php echo $key+1; ?></td>
+		                                <td><?php echo $store->getStoreName(); ?></td>
+		                                <td><?php echo $store->getStatus(); ?></td>
+		                                <td class="edit-action open-edit text-right" data-id="store_<?php echo $store->getStoreId(); ?>" data-form-url="<?php echo __path("/inventorystock/store/loadform", array("store_id" => $store->getStoreId(), "value_id" => $value_id)); ?>">
+		                                    <i class="fa fa-pencil"></i>
+		                                </td>
+
+		                                <td class="delete-action">
+		                                    <?php
+		                                        $deleteStoreFrom->setAttrib("data-rowid", "store_manage_element_".$store->getStoreId());
+		                                        $deleteStoreFrom->getElement("id")->setValue($store->getStoreId());
+		                                       echo $deleteStoreFrom;
+		                                    ?>
+		                               </td>
+		                            </tr>
+		                            <tr class="edit-form" data-id="store_<?php echo $store->getStoreId(); ?>" style="display: none;">
+		                                  <td colspan="5">
+		                                      <p class="close-edit" data-id="store_<?php echo $store->getStoreId(); ?>">
+		                                          <i class="fa fa-times"></i><?php echo p__('inventorystock', "Close") ?>
+		                                      </p>
+		                                  </td>
+		                              </tr>
+		                         <?php endforeach; ?>
+		                        </tbody>
+		                    </table>
+
+		                </div>
+		            </div>
+		        </div>
+		    <?php endif; ?>
+		</div>
+
+
+
+		<!-- Store settings tab -->
+		<div role="tabpanel" class="tab-pane" id="category">
+		     <!-- Services block -->
+		    <div class="feature-block-add">
+		        <h3 class="title-editor no-border-radius title-feature-indent">
+		            <?php echo p__('inventorystock', 'Category'); ?>
+		            <button type="button" class="feature-toggle-add toggle_design color-blue pull-right bt-header-right btn">
+		                <i class="fa fa-plus"></i>
+		            </button>
+		        </h3>
+		    </div>
+
+		    <div class="feature-block-create">
+		        <h3 class="title-editor no-border-radius title-feature-indent">
+		            <?php echo p__('inventorystock', 'Create a New Category'); ?>
+		        </h3>
+		        <div class="container-fluid subcontent content-feature">
+		            <?php echo $categoryFrom; ?>
+		        </div>
+		    </div>
+		    
+		   <?php if($categories->count() > 0): ?>
+		        <div class="feature-block-list">
+		            <div class="margin-top">
+		                <h3 class="title-editor no-border-radius title-feature-indent">
+		                    <?php echo p__('inventorystock', 'Manage Category'); ?>
+		                    <button type="button" class="toggle_design color-blue pull-right bt-header-right btn feature-toggle-items">
+		                        <i class="fa fa-chevron-down"></i>
+		                    </button>
+		                </h3>
+		                <div class="container-fluid first-row-feature content-feature feature-manage-items">
+		                    <table class="table content-white-bkg sb-pager">
+		                        <thead>
+		                        <tr class="border-blue">
+		                           <th class="sortable" style="width:10%;"><?php echo p__('inventorystock', 'S.no'); ?></th>
+		                           <th class="sortable" style="width:50%;"><?php echo p__('inventorystock', 'Name'); ?></th>
+		                           <th  style="width:20%;"> <?php echo p__('inventorystock', 'Status'); ?></th>
+		                            <th></th>
+		                            <th></th>
+		                        </tr>
+		                        </thead>
+		                        <tbody>
+		                        <?php foreach($categories as $key => $category): ?>
+		                            <tr id="category_manage_element_<?php echo $category->get(); ?>" class="category-manage-element sb-pager">
+		                                <td><?php echo $key+1; ?></td>
+		                                <td><?php echo $category->getCategoryName(); ?></td>
+		                                <td><?php echo $category->getStatus(); ?></td>
+		                                <td class="edit-action open-edit text-right" data-id="category_<?php echo $category->getId(); ?>" data-form-url="<?php echo __path("/inventorystock/category/loadform", array("id" => $category->getId(), "value_id" => $value_id)); ?>">
+		                                    <i class="fa fa-pencil"></i>
+		                                </td>
+
+		                                <td class="delete-action">
+		                                    <?php
+		                                        $deleteCategoryFrom->setAttrib("data-rowid", "category_manage_element_".$category->getId());
+		                                        $deleteCategoryFrom->getElement("id")->setValue($category->getId());
+		                                       echo $deleteCategoryFrom;
+		                                    ?>
+		                               </td>
+		                            </tr>
+		                            <tr class="edit-form" data-id="category_<?php echo $category->getId(); ?>" style="display: none;">
+		                                  <td colspan="5">
+		                                      <p class="close-edit" data-id="category_<?php echo $category->getId(); ?>">
+		                                          <i class="fa fa-times"></i><?php echo p__('inventorystock', "Close") ?>
+		                                      </p>
+		                                  </td>
+		                              </tr>
+		                         <?php endforeach; ?>
+		                        </tbody>
+		                    </table>
+
+		                </div>
+		            </div>
+		        </div>
+		    <?php endif; ?>
+		</div>
+    	 <!-- Layout background tab -->
+        <div role="tabpanel" class="tab-pane" id="background">
+            <!-- Passcode background set -->
+            <div class="section">
+                <?php echo $this->importBackground($option_value, false, false); ?>
+            </div>
+        </div>
+    </div>
+ 
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        bindForms("#loadContent");
+    });
+</script>

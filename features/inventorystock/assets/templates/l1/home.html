@@ -1,0 +1,108 @@
+<ion-view sb-page-background
+          cache-view="false"
+          ng-controller="InventorystockController"
+          class="inventorystock inventorystock-home">
+    <ion-nav-title>{{page_title}}</ion-nav-title>
+
+   <ion-content class="has-header has-footer">
+      <!-- Without Login -->
+      <!--  Login -->
+      <div class="list card" ng-show="!is_loading && !is_logged_in">
+        <div class="item item-body item-custom">
+           <button class="button button-block button-positive button-positive-custom" ng-click="login()">
+              {{ ::"Click here for Login!" | translate:"inventorystock" }}
+            </button>
+        </div>
+      </div> 
+      
+      <!-- After Login -->
+
+      <!--  No Store active -->
+      <div class="list" ng-show="!is_loading && is_logged_in" ng-if="!is_store_available && payout.total_stores == 0">
+        <div class="item item-body item-custom text-center remove-border">
+           <p>{{ ::"Store is not available, Please contact to administrator!" | translate:"inventorystock" }}</p>
+        </div>
+      </div> 
+
+       <!-- Active Store -->
+      <div class="list" ng-show="!is_loading && is_logged_in" ng-if="is_store_available && payout.total_stores > 1">
+          <div class="item item-custom">
+               <span class="item-note" ng-click="changeStore()">
+                {{ ::"Change" | translate:"inventorystock" }}
+              </span>
+               <h2>{{ default_store.store_name}}</h2>
+               <p>{{ default_store.address }}</p>
+         </div>
+       </div>
+      
+      <!-- Serach Item -->
+<!--       <div class="list list-inset" ng-show="!is_loading && is_logged_in" ng-if="is_store_available">
+            <label class="item item-input item-button-right item-custom" 
+                   ng-click="searchListingModal()">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" ng-keyup="searchProduct()" ng-modal="searchText"
+                       placeholder="{{ forTranslate('Search Product by EAN') }}" />
+            </label>
+       </div>
+        -->
+       <!-- Recent Activity -->
+      <div class="list" ng-show="!is_loading && is_logged_in" ng-if="is_store_available">
+          <div class="item item-divider item-divider-custom">
+               {{ ::"Recent Activity" | translate:"inventorystock" }}  
+          </div>
+  
+
+          <a class="item item-custom" ng-if="products.length == 0"  >
+             <p>{{ ::"No Product available in Store" | translate:"inventorystock" }} {{ default_store.store_name}}</p>
+          </a> 
+
+          <!-- Header -->
+          <a class="item item-custom opacity-half" ng-if="products.length > 0" >
+            {{ ::"EAN Number" | translate:"inventorystock" }}
+            <span class="item-note icon-active-custom">
+              <b>{{ ::"Qty" | translate:"inventorystock" }}</b>
+            </span>
+          </a> 
+
+          <!-- product Content -->
+          <a class="item item-custom" ng-repeat="product in products" ng-if="products.length > 0">
+             <span class="item-note icon-active-custom">
+              <b>{{ product.qty }}</b>
+            </span>
+            <h2>{{ product.ean_number }}</h2>
+            <p>{{ product.category_name }}
+              <span class="pull-right" ng-click="openEditProductModal(product)">{{ ::"edit" | translate:"inventorystock" }}</span>
+            </p>
+          </a> 
+              
+      </div>
+
+
+      <!--  No Store active -->
+      <div class="list welcome-message-box" ng-show="!is_loading && is_logged_in" ng-if="!is_store_available && payout.total_stores > 0">
+        <div class="item item-body item-custom text-center remove-border">
+            <p sb-html="payout.welcome_message"></p>
+            <button class="button button-small button-positive-custom select-a-store"  ng-click="changeStore()">{{ ::"Select a Store" | translate:"inventorystock" }}</button>
+        </div>
+      </div> 
+         
+      <!-- Loader -->
+      <div class="loader" ng-show="is_loading">
+          <ion-spinner class="spinner-custom"></ion-spinner>
+      </div>     
+
+   </ion-content>
+
+
+    <!-- Footer Menu -->
+    <button class="button light ion-plus-round button-floating-action button-positive button-positive-custom" ng-show="!is_loading && is_logged_in" ng-click="openProductModal()" ng-if="is_store_available"></button> 
+    <ion-footer-bar class="bar bar-footer bar-custom" ng-show="!is_loading && is_logged_in" ng-if="is_store_available">
+        <div class="button-bar text-center">
+            <div class="button button-custom item-icon-left ng-binding" ng-click="showScanCamera()">
+               <i class="icon ion-qr-scanner"></i>	
+                {{ ::"SCAN EAN PRODUCT" | translate:"inventorystock" }}
+            </div>
+        </div>        
+    </ion-footer-bar>
+
+</ion-view>
